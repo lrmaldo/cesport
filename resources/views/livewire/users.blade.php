@@ -19,6 +19,10 @@
                         <option value="organizador">Organizador</option>
                     </select>
                 </div>
+                <div>
+                    <input type="password" wire:model="password" placeholder="Contraseña"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600">
+                </div>
             </div>
             <button type="submit"
                 class="mt-4 w-full md:w-auto px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400">
@@ -26,12 +30,10 @@
             </button>
         </form>
 
-        {{-- Buscador de usuarios --}}
         <div class="mb-4">
             <input type="text" wire:model="search" placeholder="Buscar usuarios..."
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600">
         </div>
-
         {{-- Tabla de usuarios --}}
         <div class="overflow-x-auto">
             <table class="w-full border-collapse bg-white shadow-md rounded-lg">
@@ -44,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    @foreach($users as $user)
+                    @foreach($usersdb as $user)
                         <tr class="hover:bg-gray-100">
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $user->name }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $user->email }}</td>
