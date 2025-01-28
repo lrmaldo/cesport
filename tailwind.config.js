@@ -3,6 +3,7 @@ import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 
 const colors = require('tailwindcss/colors');
+const plugin = require('flowbite/plugin');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,6 +12,7 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './node_modules/flowbite/**/*.js'
     ],
     safelist: [
         "text-2xl",
@@ -35,5 +37,9 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography,
+        plugin({
+            datatables: true, // Habilita las DataTables en Flowbite
+        }),
+    ],
 };

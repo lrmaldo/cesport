@@ -11,7 +11,7 @@ class StoreRegistroRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreRegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+             /* 'nombre_completo' => ['required', 'string', 'max:255'],
+                'telefono' => ['required', 'string', 'max:10'],
+                'correo_electronico' => ['required', 'string', 'email', 'max:255'],
+                'categoria' => ['required', 'string', 'max:255'],
+                'genero' => ['required', 'string', 'max:255'],
+                'captura_transferencia' => ['file', 'mimes:jpeg,png,jpg,pdf', 'max:2048'], */
+
         ];
     }
 }

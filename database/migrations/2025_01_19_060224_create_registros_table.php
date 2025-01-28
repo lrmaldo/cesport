@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('correo_electronico')->nullable();
             $table->enum('categoria', ['5km', '10km'])->nullable();
             $table->enum('genero', ['femenil', 'varonil'])->nullable();
-            $table->integer('numero_corredor')->unique()->nullable();
+            $table->string('numero_corredor')->nullable();
             $table->enum('talla_playera', ['XS', 'S', 'M', 'L', 'XL', 'XXL'])->nullable();
             $table->string('captura_transferencia')->nullable();
             $table->timestamps();
