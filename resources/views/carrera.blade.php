@@ -160,7 +160,7 @@
                     <label for="nombre_completo" class="block text-gray-600 font-bold mb-2">Nombre Completo</label>
                     <input type="text" id="nombre_completo" name="nombre_completo"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
+                        required pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\b\w/g, l => l.toUpperCase());">
                     @error('name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -169,7 +169,9 @@
                     <label for="email" class="block text-gray-600 font-bold mb-2">Correo Electrónico</label>
                     <input type="email" id="correo_electronico" name="correo_electronico"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
+                        required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninput="validateEmail()">
+                    <span id="emailError" class="text-red-500 text-sm hidden">Correo electrónico no válido</span>
+                    <span id="emailValid" class="text-green-500 text-sm hidden">Correo electrónico válido</span>
                     @error('email')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -179,7 +181,7 @@
                     <label for="telefono" class="block text-gray-600 font-bold mb-2">Teléfono</label>
                     <input type="text" id="telefono" name="telefono"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
+                        required pattern="\d{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
                     @error('telefono')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -365,6 +367,21 @@
                 path: 'https://lottie.host/b7cfc1de-b929-450c-a037-dd958ec7b068/0x5ZZbzlcx.json' // URL del archivo Lottie
             });
         });
+
+        function validateEmail() {
+            const emailInput = document.getElementById('correo_electronico');
+            const emailError = document.getElementById('emailError');
+            const emailValid = document.getElementById('emailValid');
+            const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+            if (emailPattern.test(emailInput.value)) {
+                emailError.classList.add('hidden');
+                emailValid.classList.remove('hidden');
+            } else {
+                emailError.classList.remove('hidden');
+                emailValid.classList.add('hidden');
+            }
+        }
     </script>
 
 </body>

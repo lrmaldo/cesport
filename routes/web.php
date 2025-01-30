@@ -5,6 +5,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistroController;
 use App\Models\Registro;
 
+use App\Livewire\CategoriaCompomente;
+use App\Http\Livewire\ProductComponent;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,6 +32,9 @@ Route::middleware([
     Route::resource('registros', RegistroController::class)->except(['store']);
     /* getData */
     Route::get('getData', [RegistroController::class, 'getData'])->name('getData');
+    Route::get('/categorias', CategoriaCompomente::class)->name('categorias');
+    Route::get('/productos', ProductComponent::class)->name('productos');
 });
+
 
 
