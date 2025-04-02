@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\MercadoPagoController;
 use App\Models\Registro;
 
 use App\Livewire\CategoriaCompomente;
@@ -22,6 +23,13 @@ Route::post('/summit-registro', [RegistroController::class, 'store'])->name('sum
 Route::get('/confirmacion/{numero_corredor}', [RegistroController::class, 'confirmacion']);
 
 Route::resource('users', UserController::class);
+
+// Rutas para MercadoPago
+Route::post('/mercadopago/crear-preferencia', [MercadoPagoController::class, 'crearPreferencia']);
+Route::post('/webhook/mercadopago', [MercadoPagoController::class, 'webhook'])->name('webhook.mercadopago');
+Route::get('/mercadopago/success', [MercadoPagoController::class, 'success'])->name('mercadopago.success');
+Route::get('/mercadopago/failure', [MercadoPagoController::class, 'failure'])->name('mercadopago.failure');
+Route::get('/mercadopago/pending', [MercadoPagoController::class, 'pending'])->name('mercadopago.pending');
 
 Route::middleware([
     'auth:sanctum',

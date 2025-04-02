@@ -4,9 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Categoria;
+use Laravel\Jetstream\InteractsWithBanner;
 
 class CategoriaCompomente extends Component
 {
+    use InteractsWithBanner;
     public  $name, $description, $category_id;
     public $isOpen = 0;
     public $search = '';
@@ -67,8 +69,9 @@ class CategoriaCompomente extends Component
             'description' => $this->description,
         ]);
 
-        session()->flash('message',
-            $this->category_id ? 'Category Updated Successfully.' : 'Category Created Successfully.');
+        /* session()->flash('message',
+            $this->category_id ? 'Category Updated Successfully.' : 'Category Created Successfully.'); */
+            $this->banner($this->category_id ? 'Categoria actualizada correctamente.' : 'Categoria creada correctamente.');
 
         $this->closeModal();
         $this->resetInputFields();
@@ -87,6 +90,6 @@ class CategoriaCompomente extends Component
     public function delete($id)
     {
         Categoria::find($id)->delete();
-        session()->flash('message', 'Category Deleted Successfully.');
+        session()->flash('message', 'Categoria eliminada correctamente.');
     }
 }
